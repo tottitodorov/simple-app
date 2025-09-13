@@ -1,0 +1,5 @@
+replicaCount: 1
+service:
+  type: LoadBalancer
+indexContent: |
+  BusyBox up and running in DEV 🚀
