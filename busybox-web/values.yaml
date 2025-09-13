@@ -1,0 +1,51 @@
+# -- Overrides
+#nameOverride: ""
+fullnameOverride: "busybox"
+
+# -- Number of replicas
+replicaCount: 1
+
+image:
+  repository: busybox
+  tag: "1.36"
+  pullPolicy: IfNotPresent
+
+http:
+  # -- Container port that BusyBox httpd will listen on
+  containerPort: 8080
+  # -- Directory served by httpd
+  serveDir: /www
+
+# -- Content for index.html (served at /)
+indexContent: |
+  BusyBox up and running 🚀
+
+service:
+  # One of: ClusterIP, NodePort, LoadBalancer
+  type: LoadBalancer
+  port: 8081
+  targetPort: 8080
+  # nodePort: null  # set if type=NodePort
+  #annotations: {}
+  #labels: {}
+
+pod:
+  annotations: {}
+  #labels: {}
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+readinessProbe:
+  enabled: true
+  path: /
+  initialDelaySeconds: 2
+  periodSeconds: 5
+
+livenessProbe:
+  enabled: true
+  path: /
+  initialDelaySeconds: 10
+  periodSeconds: 10

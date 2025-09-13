@@ -1,0 +1,10 @@
+# Default Helm ignore rules
+*.swp
+*.bak
+*.tmp
+*.orig
+*.rej
+.DS_Store
+.git/
+.gitignore
+*.tgz

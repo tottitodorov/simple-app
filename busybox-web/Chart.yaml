@@ -1,0 +1,6 @@
+apiVersion: v2
+name: busybox-web
+description: A tiny BusyBox httpd Deployment + Service for demos and Minikube
+type: application
+version: 0.1.0
+appVersion: "1.36"

@@ -1,0 +1,15 @@
+1. Get the Service URL on Minikube
+
+  - Quick one-shot:
+      minikube service {{ include "busybox-web.fullname" . }} --url
+
+  - Or run a tunnel for LoadBalancer semantics:
+      minikube tunnel
+
+  Then check:
+      kubectl get svc {{ include "busybox-web.fullname" . }}
+
+2. Port info
+
+  - Service port: {{ .Values.service.port }}
+  - Container (http) port: {{ .Values.http.containerPort }}
