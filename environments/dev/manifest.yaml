@@ -45,8 +45,7 @@ spec:
               set -eu
               mkdir -p /www;
               cat << 'EOF' > /www/index.html
-              BusyBox up and running in PROD
-              
+              BusyBox up and running in DEV
               EOF
               httpd -f -p 8080 -h /www
           readinessProbe:
