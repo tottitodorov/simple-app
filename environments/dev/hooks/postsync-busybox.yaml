@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: busybox-web-postsync
+  namespace: default
+  annotations:
+    # Run after a successful sync
+    argocd.argoproj.io/hook: PostSync
+    # Clean up automatically (and clear old runs before creating a new one)
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded,HookFailed,BeforeHookCreation
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: busybox-web-postsync
+    spec:
+      restartPolicy: Never
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: busybox
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              echo "PostSync hook for busybox-web: sleeping 60s";
+              sleep 60;
+              echo "PostSync hook: done";
